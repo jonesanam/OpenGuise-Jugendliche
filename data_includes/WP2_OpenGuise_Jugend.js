@@ -351,8 +351,7 @@ PennController("Meta1",
             .center()
             .print()
         ,
-
-    newText("Meta-1", "<b>Personenbezogene Daten</b> <p>Wir brauchen einige persönliche Angaben von Ihnen. Diese werden anonymisiert gespeichert und eine spätere Zuordnung zu Ihnen wird nicht möglich sein. Bitte nehmen Sie sich beim Ausfüllen der Felder Zeit.<p>")
+  newText("Meta-1", "<b>Personenbezogene Daten</b> <p>Wir brauchen einige Angaben zu Deiner Person. Diese werden anonymisiert gespeichert und eine spätere Zuordnung zu Dir wird nicht möglich sein. Bitte nimm Dir beim Ausfüllen der Felder Zeit.<p>")
  //       .settings.css("text-align","justify")
         .center()
         .print()
@@ -365,9 +364,9 @@ PennController("Meta1",
                ,
                //Alter
                newDropDown("age", "Bitte eine Option ausw&auml;hlen")
-               .settings.add("18" , "19" , "20", "21" , "22" , "23", "24" , "25" , "26", "27" , "28" , "29", "30" , "31", "32","33", "34" , "35", "36","37","38","39","über 40")
-               .log()
-
+               .settings.add("14" , "15" , "16", "17")
+               .settings.log()
+               
                ,
                newText("agetext", "Alter:")
                .settings.css("font-size", "18px")
@@ -386,7 +385,7 @@ PennController("Meta1",
                ,
                newDropDown("sex", "Bitte eine Option ausw&auml;hlen")
                .settings.add("Weiblich", "M&auml;nnlich", "Divers")
-               .log()
+               .settings.log()
                ,
                newCanvas("sexcanvas", 1000, 40)
                .settings.add(0, 0, getText("sex"))
@@ -400,8 +399,8 @@ PennController("Meta1",
                .settings.bold()
                ,
                newTextInput("wohnort")
-
-               .log()
+               
+               .settings.log()
                ,
                newCanvas("wohnortcanvas", 1000, 40)
                .settings.add(0, 0, getText("wohnort"))
@@ -419,7 +418,7 @@ PennController("Meta1",
                .settings.bold()
                ,
                newTextInput("aufgewachsen")
-                .log()
+                .settings.log()
                //.settings.size(200,40)
                ,
                newCanvas("aufgewachsen", 1000,40)
@@ -433,29 +432,29 @@ PennController("Meta1",
                 .print()
                  ,
                  //Abschluss
-                newText("abschluss", "H&ouml;chster Bildungsabschluss:")
+                newText("abschluss", "Was f&uuml;r eine Schule besuchst du?")
                .settings.css("font-size", "18px")
                .settings.bold()
                ,
-               newDropDown("abschluss", "Bitte eine Option ausw&auml;hlen")
-               .settings.add("kein Abschluss","Schulabschluss","Abitur oder gleichwertiger Abschluss","Studium ohne Abschluss","Bachelor","Master","Magister","Diplom", "Promotion", "Ausbildung", "Sonstige")     // MAYBE ADD QUESTIONS ABOUT DIALECT AND DOMINANT HAND
+               newDropDown("schule", "Bitte eine Option ausw&auml;hlen")
+               .settings.add("Grundschule","Integrierte Sekundarschule (ISS)","Gymnasium","Fachgymnasium","Schulausbildung bereits beendet","Sonstige")     // MAYBE ADD QUESTIONS ABOUT DIALECT AND DOMINANT HAND
                //.settings.size(191,20)
-               .log()
+               .settings.log()
                ,
-               newCanvas("abschlusscanvas", 1000, 40)
-               .settings.add(0, 0, getText("abschluss"))
-               .settings.add(470,4, getDropDown("abschluss"))
+               newCanvas("schulecanvas", 1000, 40)
+               .settings.add(0, 0, getText("schule"))
+               .settings.add(470,4, getDropDown("schule"))
                //.settings.center()
                .print()
                ,
                //Studium
-               newText("studium","<b>Studieren Sie?</b><br><small>(Falls ja, welches Fach und Fachsemester?)</small><br><br>")
+               newText("studium","<b>Studierst du?</b><br><small>(Falls ja, welches Fach und Fachsemester?)</small><br><br>")
                .settings.css("font-size", "18px")
-
-               ,
+               
+               , 
                newTextInput("studiuminput")
                .settings.size(150,40)
-               .log()
+               .settings.log()
                .settings.hidden()
                ,
                newText("studium_input", "")
@@ -463,13 +462,13 @@ PennController("Meta1",
                ,
                newDropDown("studium",  "<br>" +"Bitte eine Option ausw&auml;hlen")
                .settings.add("Ja", "Nein")
-               .log()
+               .settings.log()
                .settings.after(getText("studium_input"))
                .settings.callback(
                    getDropDown("studium")
                    .test.selected("Ja")
                    .success(getTextInput("studiuminput").settings.visible(
-
+                    
                    )) )
                ,
                newCanvas("studium", 1000, 40)
@@ -479,20 +478,20 @@ PennController("Meta1",
                .print()
                ,
                newCanvas("filler", 1, 20)
-
+               
                .print()
                ,
-
+ 
               //Leiter
                newText("Leiter","<b>Die untenstehende Leiter</b> repr&auml;sentiert den relativen Sozialstatus der Menschen in Deutschland. "
                        +"An der Spitze der Leiter stehen Menschen mit relativ hohem Status – diejenigen, die das meiste Geld, die beste Bildung und die angesehensten Arbeitspl&auml;tze haben. Ganz unten sind Menschen mit relativ niedrigem Status – beispielsweise als arbeitslos Gemeldete. Relativ weit unten zu verorten w&auml;ren auch diejenigen, die nur wenig Geld verdienen, einen niedrigen Bildungstand haben, und / oder Berufe aus&uuml;ben, die die Gesellschaft als eher wenig respektabel ansieht."
-                       +"<br> Wo w&uuml;rden Sie Sich auf dieser Leiter einordnen? W&auml;hlen Sie bitte die Sprosse, die Ihrem empfundenen Sozialstatus am ehesten entspricht.")
+                       +"<br> Wo w&uuml;rdest du dich auf dieser Leiter einordnen? W&auml;hle bitte die Sprosse, die deinem empfundenen Sozialstatus am ehesten entspricht.")
                .settings.css("font-size", "18px")
                .settings.css("text-align","justify")
                ,
                newDropDown("leiter", "Bitte eine Option ausw&auml;hlen")
                .settings.add("A", "B", "C","D", "E", "F","G", "H", "I","J")
-               .log()
+               .settings.log()
                ,
                newImage("leiter", "https://amor.cms.hu-berlin.de/~patarroa/Leiter.jpeg")
                .settings.size(200,300)
@@ -510,50 +509,50 @@ PennController("Meta1",
                ,
               newCanvas("filler2", 40, 150)
                .print()
-               ,
+               , 
     newButton("continue", "Weiter")
                .settings.css("font-family", "calibri").settings.css("font-size", "12px")
                //.settings.center()
-               .log()
+               .settings.log()
                .center()
                .print()
                .wait(
             newFunction('dummy', ()=>true).test.is(true)
             // age
             .and( getDropDown("age").test.selected()
-                    .failure( newText('errorage', "<br>Bitte Alter angeben.").color("red") .center().print() )
+                    .failure( newText('errorage', "Bitte Alter angeben.").color("red") .center().print() )
             // sex
             ).and( getDropDown("sex").test.selected()
-                    .failure( newText('errorsex', "<br>Bitte Geschlecht angeben.").color("red") .center().print() )
+                    .failure( newText('errorsex', "Bitte Geschlecht angeben.").color("red") .center().print() )
              // abschluss
-            ) .and( getDropDown("abschluss").test.selected()
-                    .failure( newText('errorabschluss', "<br>Bitte höchsten Abschluss angeben.").color("red") .center().print() )
-
+            ) .and( getDropDown("schule").test.selected()
+                    .failure( newText('errorabschluss', "Bitte Schule angeben.").color("red") .center().print() )
+  
             ).and( getDropDown("studium").test.selected()
-                   .failure( newText('errorstudium', "<br>Bitte Studium angeben.").color("red") .center().print() )
-
+                   .failure( newText('errorstudium', "Bitte Studium angeben.").color("red") .center().print() )
+          
             ).and(getDropDown("leiter").test.selected()
-                   .failure( newText('leitererr', "<br>Bitte Variante auf der Leiter angeben.").color("red") .center().print() )
-
+                   .failure( newText('leitererr', "Bitte Variante auf der Leiter angeben.").color("red") .center().print() )
+         
             ).and(
              getTextInput("wohnort").test.text(/^.+/) // testing if at least one digit was written in the input box
                 .failure(
-                   newText("wohnorter","<br>Bitte Wohnort angeben")
+                   newText("wohnorter","Bitte Wohnort angeben")
                    .settings.color("red")
                    .center()
                    .print())
                 ).and(
              getTextInput("aufgewachsen").test.text(/^.+/) // testing if at least one digit was written in the input box
                 .failure(
-                   newText("aufgewachsener","<br>Bitte angeben, wo Sie aufgewachsen sind.")
+                   newText("aufgewachsener","Bitte angeben wo du aufgewachsen bist.")
                    .settings.color("red")
                    .center()
                    .print())
-
+ 
             )  )
-
-
-               ,
+               
+             
+               ,     
                getDropDown("age").wait("first")
                ,
                getDropDown("sex").wait("first")
@@ -562,29 +561,24 @@ PennController("Meta1",
                ,
                getDropDown("leiter").wait("first")
                ,
-               getDropDown("abschluss").wait("first")
- )
- ;
- //Metadaten 2: Sprachbiographie
-PennController("Meta2",
-    newImage("HU","HU Logo.png")  
-            .size(289,65)
-         ,
-        newImage("UNam","UNam Logo.png")
-            .size(230,60)
-        ,
-         newImage("SFB","SFB Logo.png")
-            .size(280,86)
-        ,
-         newCanvas("Logosnebeneinander",1138,100) //bildet den Header mit Logos
-            .add(100,0, getImage("HU"))
-            .add(450,0, getImage("UNam"))
-            .add(750,0, getImage("SFB"))
-            .center()
-            .print()
-        ,
-
-       newText("SprachenMutter","<b>Welche Sprachen spricht/sprach Ihre Mutter?</b><br>Bitte sortieren und mit der am besten gesprochenen Sprache beginnen.")
+               getDropDown("schule").wait("first")
+  ,
+  //Metadaten 2: Sprachbiographie
+newTrial("Meta2",
+newImage("HU","HU Logo.png")
+        .size(289,65)
+    ,
+        newImage("SFB","SFB Logo.png")
+        .size(280,86)
+    ,
+    newCanvas("Logosnebeneinander",1138,100)
+        .add(100,0, getImage("HU"))
+        .add(750,0, getImage("SFB"))
+        .center()
+        .print()
+    ,
+   
+       newText("SprachenMutter","<b>Welche Sprachen spricht/sprach deine Mutter?</b><br>Bitte sortieren und mit der am besten gesprochenen Sprache beginnen.")
  //       .center()
         .print()
 ,
@@ -598,13 +592,13 @@ PennController("Meta2",
         .print()
 ,
     getTextInput("SprachenMutter")
-        .log("final")
+        .settings.log("final")
 ,
 newText("Leerzeile"," <br></p>")
     .center()
     .print()
 ,
-    newText("SprachenVater","<b>Welche Sprachen spricht/sprach Ihr Vater?</b><br> Bitte sortieren und mit der am besten gesprochenen Sprache beginnen.")
+    newText("SprachenVater","<b>Welche Sprachen spricht/sprach dein Vater?</b><br> Bitte sortieren und mit der am besten gesprochenen Sprache beginnen.")
   //      .center()
         .print()
 ,
@@ -618,13 +612,13 @@ newText("Leerzeile"," <br></p>")
         .print()
 ,
     getTextInput("SprachenVater")
-        .log("final")
+        .settings.log("final")
                ,
                newText("Leerzeile"," <br></p>")
                  .center()
                 .print()
                  ,
-       newText("SprachenSelbst","<b>Welche Sprachen sprechen Sie selbst im Alltag?</b><br> Mit wem und in welchen Situationen? Bitte sortieren und mit der am häufigsten gesprochenen Sprache beginnen.")
+       newText("SprachenSelbst","<b>Welche Sprachen sprichst du selbst im Alltag?</b><br> Mit wem und in welchen Situationen? Bitte sortieren und mit der am häufigsten gesprochenen Sprache beginnen.")
  //       .center()
         .print()
 ,
@@ -638,14 +632,14 @@ newText("Leerzeile"," <br></p>")
         .print()
 ,
     getTextInput("SprachenSelbst")
-        .log("final")
+        .settings.log("final")
     ,
  newText("Leerzeile"," <br></p>")
                  .center()
                 .print()
-                 ,
+                 ,      
 
- newText("Dialekt","<b>Sprechen Sie einen Dialekt?</b><br> Mit wem und in welchen Situationen?")
+ newText("Dialekt","<b>Sprichst du einen Dialekt?</b><br> Mit wem und in welchen Situationen?")
 //        .center()
         .print()
 ,
@@ -660,37 +654,17 @@ newText("Leerzeile"," <br></p>")
         .print()
 ,
     getTextInput("Dialekt")
-        .log("final")
-,
+        .settings.log("final")
+,    
 newText("Leerzeile"," <br></p>")
                  .center()
                 .print()
-                 ,
-newText("Email","<b>Dürften wir dich in Zukunft erneut kontaktieren?</b><br>Wenn ja, bitte Emailadresse angeben.<br>Die Angabe der Kontaktdaten ist freiwillig. Um Anonymität zu gewährleisten, wird diese Angabe getrennt vom ausgefüllten Fragebogen archiviert.")
-//        .center()
-        .print()
-,
-    newCanvas("Email", 1, 10)
- //       .center()
-        .print()
-,
+                 ,  
 
-    newTextInput("Email")
- //       .center()
-        .size(600,80)
-        .print()
-,
-    getTextInput("Email")
-        .log("final")
-,
-newText("Leerzeile"," <br></p>")
-                 .center()
-                .print()
-                 ,
     newButton("Ende", "Experiment beenden und Daten abschicken")
                .settings.css("font-family", "calibri").settings.css("font-size", "18px")
                //.settings.center()
-               .log()
+               .settings.log()
                .center()
                .print()
                .wait(
@@ -698,55 +672,49 @@ newText("Leerzeile"," <br></p>")
                 .and(
              getTextInput("SprachenMutter").test.text(/^.+/) // testing if at least one digit was written in the input box
                 .failure(
-                   newText("errormutter","<br>Bitte Sprachen der Mutter angeben")
+                   newText("errormutter","Bitte Sprachen der Mutter angeben")
                    .settings.color("red")
                    .center()
                    .print())
                 ).and(
              getTextInput("SprachenVater").test.text(/^.+/) // testing if at least one digit was written in the input box
                 .failure(
-                   newText("errorvater","<br>Bitte Sprachen des Vaters angeben.")
+                   newText("errorvater","Bitte Sprachen des Vaters angeben.")
                    .settings.color("red")
                    .center()
                    .print())
              ).and(
              getTextInput("SprachenSelbst").test.text(/^.+/) // testing if at least one digit was written in the input box
                 .failure(
-                   newText("errorselbst","<br>Bitte angeben wo Sie aufgewachsen sind.")
+                   newText("errorselbst","Bitte angeben wo du aufgewachsen bist.")
                    .settings.color("red")
             ).and(
              getTextInput("Dialekt").test.text(/^.+/) // testing if at least one digit was written in the input box
                 .failure(
-                   newText("errordialekt","<br>Bitte Dialekt angeben.")
+                   newText("errordialekt","Bitte Dialekt angeben.")
                    .settings.color("red")
                    .center()
                    .print())
             )  )
-
+               
  )
-)
-;
-//Geloggte Ergebnisse senden
-PennController.SendResults("send");
+ )
+),
 
-//Abschlussbildschirm
-PennController("Final",
-         newText("<p>Vielen Dank f&uuml;r Ihre Teilnahme! Die Studie ist hiermit beendet. </p>")
+newTrial("Final",
+         newText("<p>Vielen Dank f&uuml;r deine Teilnahme! Die Studie ist hiermit beendet. </p>")
+            .settings.css("font-family","times new roman") .settings.css("font-size", "18px")
+            .settings.center()
+            .print()
+        ,    
+ 
+        newText ("<p>Du kannst das Fenster jetzt schließen.")
             .settings.css("font-family","times new roman") .settings.css("font-size", "18px")
             .settings.center()
             .print()
         ,
-
-        newText ("<p>Sie können das Fenster jetzt schließen.")
-            .settings.css("font-family","times new roman") .settings.css("font-size", "18px")
-            .settings.center()
-            .print()
-        ,
-        newButton("void", "")
+        newButton("void")
             .wait()
-
-
-   )
-;
-
-
+    
+        
+   );
